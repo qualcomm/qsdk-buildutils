@@ -54,4 +54,4 @@ How to contact maintainers. E.g. GitHub Issues, GitHub Discussions could be indi
 
 ## License
 
-*meta_qsdk* is licensed under the [BSD-3-clause License](https://spdx.org/licenses/BSD-3-Clause.html). See [LICENSE.txt](LICENSE.txt) for the full license text.
+*meta_qsdk* is licensed under the [ISC License](https://spdx.org/licenses/ISC.html). See [LICENSE.txt](LICENSE.txt) for the full license text.
