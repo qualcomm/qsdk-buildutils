@@ -1,6 +1,6 @@
 # ===========================================================================
 # Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: ISC
 # ===========================================================================
 
 import subprocess
@@ -19,7 +19,7 @@ def sync_repo(folder_name, au_tag):
 		-b release -m {au_tag}.xml \\
 		--repo-url=https://git.codelinaro.org/clo/tools/repo.git \\
 		--repo-branch=qc-stable && \\
-		repo sync -j8
+		repo sync -j32
 		"""
 		subprocess.run(setup_and_sync, shell=True, check=True, executable="/bin/bash")
 		return True
@@ -65,7 +65,7 @@ def build_qsdk(folder_name, target, arch, profile):
 		cd {folder_name}/qsdk && \\
 		source qca/configs/qsdk/setup-environment \\
 		-t {target} -a {arch} -p {profile} -d n -c n -e false && \\
-		make V=s -j8
+		make V=e -j32
 		"""
 		subprocess.run(build_commands, shell=True, check=True, executable="/bin/bash")
 		return True
@@ -109,11 +109,11 @@ def main():
 			if not build_qsdk(folder_name, target, arch, profile):
 				sys.exit(1)
 
-		script_path = os.path.join(folder_name, "meta-tools-oss", "scripts")
+		script_path = os.path.dirname(os.path.abspath(__file__))
 
 		if args.get:
 			print(f"\nRunning prepare_bin.py for {target}...")
-			subprocess.run(["python", "prepare_bin.py", target, version_string], check=True, cwd=script_path)
+#			subprocess.run(["python", "prepare_bin.py", target, version_string], check=True, cwd=script_path)
 
 		if args.install or (args.build and args.pack):
 			print(f"\nRunning copy_bin.py for {target} {arch}-bit...")
