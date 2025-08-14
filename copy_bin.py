@@ -65,10 +65,10 @@ file_lists = {
 	}
 }
 
-def copy_files(soc, arch):
-	source_dir = os.path.abspath(os.path.join("..", "..", "qsdk", "bin", "targets", soc,
-											"generic" if arch == "64" else f"{soc}_32"))
-	target_dir = os.path.abspath(os.path.join("..", "..", "qsdk", "ipq"))
+def copy_files(base_path, soc, arch):
+	source_dir = os.path.join(base_path, "qsdk", "bin", "targets", soc,
+											"generic" if arch == "64" else f"{soc}_32")
+	target_dir = os.path.join(base_path, "qsdk", "ipq")
 	files = file_lists.get(soc, {}).get(arch, [])
 	if not files:
 		print(f"No files defined for SoC: {soc}, Architecture: {arch}")
@@ -90,29 +90,34 @@ def main():
 	target_soc = sys.argv[1]
 	architecture = sys.argv[2]
 
-	ipq_dir = os.path.join(os.getcwd(), "ipq")
-	os.makedirs(ipq_dir, exist_ok=True)
-	base_path = os.path.abspath(os.path.join(os.getcwd(), "..", ".."))
-	qsdk_ipq_path = os.path.abspath(os.path.join(base_path, "qsdk", "ipq"))
+	script_dir = os.path.dirname(os.path.abspath(__file__))
+	base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
+	soc_folder_name = next((d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))), None)
+
+
+	if not soc_folder_name:
+		print("Error: Could not determine SoC folder name.")
+		sys.exit(1)
+
+	full_base_path = os.path.join(base_path, soc_folder_name)
+
+	qsdk_ipq_path = os.path.join(full_base_path, "qsdk", "ipq")
+	os.makedirs(qsdk_ipq_path, exist_ok=True)
 
 	try:
-		qsdk_root = os.path.abspath(os.path.join(base_path, "qsdk"))
-		ubinize_path = os.path.join(qsdk_root, "staging_dir", "host", "bin", "ubinize")
-		mkimage_path = os.path.join(qsdk_root, "staging_dir", "host", "bin", "mkimage")
-		mksquashfs4_path = os.path.join(qsdk_root, "staging_dir", "host", "bin", "mksquashfs4")
-		shutil.copy(ubinize_path, qsdk_ipq_path)
-		shutil.copy(mkimage_path, qsdk_ipq_path)
-		shutil.copy(mksquashfs4_path, qsdk_ipq_path)
+		tools_path = os.path.join(full_base_path, "qsdk", "staging_dir", "host", "bin")
+		for tool in ["ubinize", "mkimage", "mksquashfs4"]:
+			shutil.copy(os.path.join(tools_path, tool), qsdk_ipq_path)
 		print("Copied ubinize, mkimage and mksquashfs4 to qsdk/ipq")
 	except FileNotFoundError as e:
 		print(f"Error copying tools: {e}")
 		sys.exit(1)
 
 	try:
-		meta_tools_path = os.path.abspath(os.path.join(base_path, "meta-tools-oss"))
+		meta_tools_path = os.path.join(full_base_path, "meta-tools-oss"))
 		shutil.copytree(os.path.join(meta_tools_path, "scripts"), os.path.join(qsdk_ipq_path, "scripts"), dirs_exist_ok=True)
-		shutil.copy(os.path.join(meta_tools_path, "pack.py"), os.path.join(qsdk_ipq_path, "scripts"))
-		shutil.copy(os.path.join(meta_tools_path, "pack_v3.py"), os.path.join(qsdk_ipq_path, "scripts"))
+		for script in ["pack.py", "pack_v3.py"]:
+			shutil.copy(os.path.join(meta_tools_path, script), os.path.join(qsdk_ipq_path, "scripts"))
 		shutil.copy(os.path.join(meta_tools_path, "prepareSingleImage.py"), qsdk_ipq_path)
 		print("Copied scripts and tools from meta-tools-oss to qsdk/ipq")
 
@@ -127,10 +132,10 @@ def main():
 							os.path.join(qsdk_ipq_path, folder_name), dirs_exist_ok=True)
 			print(f"Copied {folder_name} folder from meta-tools-oss to qsdk/ipq")
 	except FileNotFoundError:
-		print("Failed to change to ../meta-tools-oss/")
+		print("Error copying meta tools: {e}")
 		sys.exit(1)
 
-	copy_files(target_soc, architecture)
+	copy_files(full_base_path, target_soc, architecture)
 
 if __name__ == "__main__":
 	main()
