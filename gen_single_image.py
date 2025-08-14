@@ -10,7 +10,13 @@ import subprocess
 import argparse
 
 def main(target, arch):
-		input_dir = os.path.abspath(os.path.join(os.getcwd(), "..", "..", "qsdk", "ipq"))
+		script_dir = os.path.dirname(os.path.abspath(__file__))
+		base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
+		soc_folder_name = next((d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))), None)
+		full_base_path = os.path.join(base_path, soc_folder_name)
+		
+		input_dir = os.path.join(full_base_path, "qsdk", "ipq")
+		os.makedirs(input_dir, exist_ok=True)
 		output_dir = os.path.join(input_dir, "bin")
 
 		if target == "ipq54xx" and arch == "32":
