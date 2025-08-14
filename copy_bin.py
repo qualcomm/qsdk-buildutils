@@ -114,7 +114,7 @@ def main():
 		sys.exit(1)
 
 	try:
-		meta_tools_path = os.path.join(full_base_path, "meta-tools-oss"))
+		meta_tools_path = os.path.join(full_base_path, "meta-tools-oss")
 		shutil.copytree(os.path.join(meta_tools_path, "scripts"), os.path.join(qsdk_ipq_path, "scripts"), dirs_exist_ok=True)
 		for script in ["pack.py", "pack_v3.py"]:
 			shutil.copy(os.path.join(meta_tools_path, script), os.path.join(qsdk_ipq_path, "scripts"))
