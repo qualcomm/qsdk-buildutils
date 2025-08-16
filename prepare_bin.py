@@ -30,7 +30,7 @@ def main():
 		sys.exit(1)
 
 	script_dir = os.path.dirname(os.path.abspath(__file__))
-	base_path = os.path.abspath(os.path.join(script_dir, ".."))
+	base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
 	full_base_path = os.path.join(base_path, soc_folder_name)
 	target_dir = os.path.join(full_base_path, "qsdk", "ipq")
 	os.makedirs(target_dir, exist_ok=True)

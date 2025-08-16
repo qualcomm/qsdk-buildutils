@@ -11,7 +11,7 @@ import argparse
 
 def main(target, arch, folder_name):
 		script_dir = os.path.dirname(os.path.abspath(__file__))
-		base_path = os.path.abspath(os.path.join(script_dir, ".."))
+		base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
 		full_base_path = os.path.join(base_path, folder_name)
 
 		input_dir = os.path.join(full_base_path, "qsdk", "ipq")

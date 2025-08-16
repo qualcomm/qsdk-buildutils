@@ -92,7 +92,7 @@ def main():
 	soc_folder_name = sys.argv[3]
 
 	script_dir = os.path.dirname(os.path.abspath(__file__))
-	base_path = os.path.abspath(os.path.join(script_dir, ".."))
+	base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
 	full_base_path = os.path.join(base_path, soc_folder_name)
 	qsdk_ipq_path = os.path.join(full_base_path, "qsdk", "ipq")
 	os.makedirs(qsdk_ipq_path, exist_ok=True)
