@@ -83,24 +83,17 @@ def copy_files(base_path, soc, arch):
 			print(f"File not found: {filename}")
 
 def main():
-	if len(sys.argv) != 3:
+	if len(sys.argv) != 4:
 		print("Usage: python copy_binaries.py <target_soc> <architecture>")
 		sys.exit(1)
 
 	target_soc = sys.argv[1]
 	architecture = sys.argv[2]
+	soc_folder_name = sys.argv[3]
 
 	script_dir = os.path.dirname(os.path.abspath(__file__))
-	base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
-	soc_folder_name = next((d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))), None)
-
-
-	if not soc_folder_name:
-		print("Error: Could not determine SoC folder name.")
-		sys.exit(1)
-
+	base_path = os.path.abspath(os.path.join(script_dir, ".."))
 	full_base_path = os.path.join(base_path, soc_folder_name)
-
 	qsdk_ipq_path = os.path.join(full_base_path, "qsdk", "ipq")
 	os.makedirs(qsdk_ipq_path, exist_ok=True)
 

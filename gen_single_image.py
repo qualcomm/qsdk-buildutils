@@ -9,12 +9,11 @@ import sys
 import subprocess
 import argparse
 
-def main(target, arch):
+def main(target, arch, folder_name):
 		script_dir = os.path.dirname(os.path.abspath(__file__))
-		base_path = os.path.abspath(os.path.join(script_dir, "..", "qsdkwkspace"))
-		soc_folder_name = next((d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))), None)
-		full_base_path = os.path.join(base_path, soc_folder_name)
-		
+		base_path = os.path.abspath(os.path.join(script_dir, ".."))
+		full_base_path = os.path.join(base_path, folder_name)
+
 		input_dir = os.path.join(full_base_path, "qsdk", "ipq")
 		os.makedirs(input_dir, exist_ok=True)
 		output_dir = os.path.join(input_dir, "bin")
@@ -102,6 +101,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Generate single image")
 	parser.add_argument("target", help="Target SoC")
 	parser.add_argument("arch", help="Architecture")
+	parser.add_argument("folder_name", help="Workspace folder name")
 	args = parser.parse_args()
 
-	main(args.target, args.arch)
+	main(args.target, args.arch, args.folder_name)

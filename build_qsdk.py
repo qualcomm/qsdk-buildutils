@@ -113,15 +113,15 @@ def main():
 
 		if args.get:
 			print(f"\nRunning prepare_bin.py for {target}...")
-#			subprocess.run(["python", "prepare_bin.py", target, version_string], check=True, cwd=script_path)
+			subprocess.run(["python", "prepare_bin.py", target, version_string, folder_name], check=True, cwd=script_path)
 
 		if args.install or (args.build and args.pack):
 			print(f"\nRunning copy_bin.py for {target} {arch}-bit...")
-			subprocess.run(["python", "copy_bin.py", target, arch], check=True, cwd=script_path)
+			subprocess.run(["python", "copy_bin.py", target, arch, folder_name], check=True, cwd=script_path)
 
 		if args.pack:
 			print(f"\nRunning gen_single_image.py for {target} {arch}-bit...")
-			subprocess.run(["python", "gen_single_image.py", target, arch], check=True, cwd=script_path)
+			subprocess.run(["python", "gen_single_image.py", target, arch, folder_name], check=True, cwd=script_path)
 
 	else:
 		print("Target and architecture must be specified.")
