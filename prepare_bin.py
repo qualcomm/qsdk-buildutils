@@ -9,6 +9,7 @@ import sys
 import subprocess
 import argparse
 import json
+import re
 
 def main():
 	if len(sys.argv) != 4:
@@ -19,11 +20,24 @@ def main():
 	version_string = sys.argv[2]
 	soc_folder_name = sys.argv[3]
 
+	# Extract base version from QART tag (e.g., r13.1.r1_00001.0 → 13.1)
+	match = re.match(r"r(\d+\.\d+)", version_string)
+	if not match:
+		print(f"Invalid version string format: {version_string}")
+		sys.exit(1)
+
+	version_key = match.group(1)
+
 	with open("download_links.json", "r") as f:
 		data = json.load(f)
 
-	base_url = data["base_url"]
-	download_links = data["links"]
+	if version_key not in data:
+		print(f"Unsupported version: {version_key}")
+		sys.exit(1)
+
+	version_data = data[version_key]
+	base_url = version_data["base_url"]
+	download_links = version_data["links"]
 
 	if target_soc not in download_links:
 		print(f"Unsupported SoC: {target_soc}")
