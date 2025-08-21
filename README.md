@@ -1,4 +1,4 @@
-# meta-qsdk
+# qsdk-buildutils
 
 This project contains helper scripts that is used for build and single image creation of qsdk for DragonWing Wireless LAN Access Point software 
 
