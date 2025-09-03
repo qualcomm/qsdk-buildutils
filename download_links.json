@@ -1,3 +1,8 @@
+# ===========================================================================
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+# ===========================================================================
+
 {
   "13.0": {
     "base_url": "https://qartifactory-edge.qualcomm.com/artifactory/qsc_releases/software/chip/qca_networking_2025_ath-spf-13-0/qca-networking-2025-ath-spf-13-0_qca_oem_qartifact/",
