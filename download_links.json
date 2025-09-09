@@ -85,8 +85,8 @@
         "{version}/boot-xf-0-3-1-2/boot_images/QcomPkg/IPQ9574Pkg/Bin/9574/LA/RELEASE/sign/default/sbl1/xbl.elf",
         "{version}/rpm-bf-2-4-1/IPQ9574/rpm_proc/build/ms/bin/9574/rpm.mbn",
         "{version}/boot-xf-0-3-1-2/boot_images/QcomPkg/Tools/storage/fh_loader/QSaharaServer.exe",
-        "{version}/wlan-hk-2-13-0-1/wlan_proc/build/ms/bin/9574-wlanfw-eval/FW_IMAGES/wifi_fw_ipq9574_qcn9000_squashfs.img",
-        "{version}/wlan-hk-2-13-0-1/wlan_proc/build/ms/bin/9574-wlanfw-eval/FW_IMAGES/wifi_fw_ipq9574_squashfs.img",
+        "{version}/wlan-hk-2-14-0-1-r2/wlan_proc/build/ms/bin/9574.wlanfw.eval/FW_IMAGES/wifi_fw_ipq9574_qcn9000_squashfs.img",
+        "{version}/wlan-hk-2-14-0-1-r2/wlan_proc/build/ms/bin/9574.wlanfw.eval/FW_IMAGES/wifi_fw_ipq9574_squashfs.img",
         "{version}/wlan-wbe-1-6-r2/wlan_proc/build/ms/bin/9224.wlanfw.eval_v2/upstream/wifi_fw_qcn9224_v2_squashfs.img",
         "{version}/wlan-wbe-1-6-r2/wlan_proc/build/ms/bin/9224.wlanfw.single_dualmac_v2/upstream/wifi_fw_qcn9224_v2_dualmac_squashfs.img"
       ],
