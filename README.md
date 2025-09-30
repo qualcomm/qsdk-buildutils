@@ -9,13 +9,13 @@ This project contains helper scripts that is used for build and single image cre
 ## Requirements
 
 The build environment is linux based.
-•	Install the following packages with the following command:
+*	Install the following packages with the following command:
     	apt-get install -y python3 python3-pip python3-venv python3-yam
-•	Install pip for python
+*	Install pip for python
 	    RUN pip install --no-cache-dir requests formatter2
-•	Download the setup_qsdk.sh script from CLO into the linux build machine. The following command can be used to download the file:
+*	Download the setup_qsdk.sh script from CLO into the linux build machine. The following command can be used to download the file:
         wget https://git.codelinaro.org/clo/qsdk/oss/system/openwrt/ipq-scripts/-/raw/win.platform_tools.1.0.r26/setup_qsdk.sh
-•	Run this script to install the rest of the required packages.
+*	Run this script to install the rest of the required packages.
 
 
 ## Installation Instructions
