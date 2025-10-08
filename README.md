@@ -10,11 +10,17 @@ This project contains helper scripts that is used for build and single image cre
 
 The build environment is linux based.
 *	Install the following packages with the following command:
+```bash
     	apt-get install -y python3 python3-pip python3-venv python3-yam
+```
 *	Install pip for python
+```bash
 	    RUN pip install --no-cache-dir requests formatter2
+```
 *	Download the setup_qsdk.sh script from CLO into the linux build machine. The following command can be used to download the file:
-        wget https://git.codelinaro.org/clo/qsdk/oss/system/openwrt/ipq-scripts/-/raw/win.platform_tools.1.0.r26/setup_qsdk.sh
+```bash
+		wget https://git.codelinaro.org/clo/qsdk/oss/system/openwrt/ipq-scripts/-/raw/win.platform_tools.1.0.r29/setup_qsdk.sh
+```
 *	Run this script to install the rest of the required packages.
 
 
@@ -27,16 +33,16 @@ Download the python scripts from this repo to your build machine.
 Invoke the build_qsdk.py script.
 
 This script supports the following activities:
-•	Repo sync from CLO based on the AU tag. 
-•	Pull the binaries from Qartifactory.
-•	Compile and Build the NHSS image.
-•	Prepare for single image by installing the required binaries 
-•	Create a single image which can be used for flashing. 
+-	Repo sync from CLO based on the AU tag. 
+-	Pull the binaries from Qartifactory.
+-	Compile and Build the NHSS image.
+-	Prepare for single image by installing the required binaries 
+-	Create a single image which can be used for flashing. 
 
 The following command does all the above activities:
-
+```bash
 python build_qsdk.py -w <workspace_name> -t <target_name> -a <architecture bit 32|64> -g {<AU tag> <Qartificatory version> -b -p
-
+```
 
 ## Development
 
