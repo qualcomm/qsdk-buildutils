@@ -3,7 +3,7 @@
 ## Requirements for Board Bringup
 *	12V Power adapter
 *	UART adapter with ribbon cable (TB39)
-*	USB to UART adapter
+*	USB to UART adapter	(https://www.cadyce.com/shop/cables-adapters/usb-2-0/ca-us9/)
 *	Ethernet cable
 *	Host PC to connect the UART and Ethernet cable to.
 
