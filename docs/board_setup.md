@@ -7,13 +7,20 @@
 *	Ethernet cable
 *	Host PC to connect the UART and Ethernet cable to.
 *	UART settings should be 115200 8N1
+## Requirements for Board Recovery
+*	USB A to A cable with the VCC pin cut
+*	Windows PC 
+*	The needed Software are listed in the USB EDL recovery section. 
 
-       	+-------------------+                +----------------------+
+## The Setup
+        +-------------------+                +----------------------+
         |       PC          |                |   Device Under Test  |
-        |                   |                |                      |
         |                   |                |                      |
         |  	     [Ethernet] |<---Ethernet--->| [Ethernet]           |
         |	       [Port]   |                | [Port]               |
+        |                   |                |                      |
+        |  	        [USB]   |<--USB A to A-->| [USB]                |
+        |	        [Port]  |                | [Port]               |
         |                   |                |                      |
         |                   |                |                      |
         |  [USB Port]       |                |     [UART Port]      |
@@ -27,8 +34,5 @@
                                 to       Dongle
                                Serial
                                Adapter
-
-## Requirements for Board Recovery
-*	USB A to A cable with the VCC pin cut
-*	Windows PC 
-*	The needed Software are listed in the USB EDL recovery section. 
+                               
+**Note**: The USB A to A connection is neeeded only for USB recovery mode
