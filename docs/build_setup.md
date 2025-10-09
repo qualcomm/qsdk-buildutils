@@ -1,4 +1,7 @@
-## Build setup
+## Build Machine Requirements
+<TODO>
+
+## Build Environment setup
 
 For building either the single image or the QSDK image, a Linux environment is required.
 
