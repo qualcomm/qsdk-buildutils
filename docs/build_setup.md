@@ -1,5 +1,7 @@
 ## Build Machine Requirements
-TODO
+Ubuntu 18.04 or later
+500 GB HDD
+8 GB RAM
 
 ## Build Environment setup
 
